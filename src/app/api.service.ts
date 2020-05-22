@@ -20,4 +20,8 @@ export class ApiService {
     return this.httpClient.get("https://damp-scrubland-46949.herokuapp.com/emplois/" + id);
   }
 
+  getFavorite(id) {
+    return this.httpClient.get("https://damp-scrubland-46949.herokuapp.com/favorises/" + id);
+  }
+
 }
