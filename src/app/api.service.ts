@@ -17,19 +17,23 @@ export class ApiService {
   candidature : any;
 
   constructor(public httpClient: HttpClient, public nav : NavController, public app : ApplicationRef, public router : Router) {
+    this.onConnectionComplete()
+    this.getAllOffres().subscribe(data => {
+      this.offres = data;
+    })
+    
+   }
+
+   onConnectionComplete() {
     this.getPersonne(this.id).subscribe(data => {
       this.personne = data;
       this.getFavorite(1).subscribe(data => {
         this.favs = data['emplois'];
       });
       this.getCandidature(1).subscribe(data => {
-        this.candidature = data['emplois'];
+        this.candidature = data['emplois']; 
       });
     })
-    this.getAllOffres().subscribe(data => {
-      this.offres = data;
-    })
-    
    }
 
   getAllOffres() {
