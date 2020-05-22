@@ -9,6 +9,11 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-item>
+    <ion-label color="dark" >{{number}} profils</ion-label>
+  </ion-item>
+  
+
   <ion-list>
     <ion-item *ngFor="let offre of offres">
       <ion-avatar slot="start">
@@ -16,12 +21,12 @@
       </ion-avatar>
 
       <ion-label>
-        <h2>{{offre.name}}</h2>
-        <h3>{{offre.description}}</h3>
-        <h2>{{offre.name}}</h2>
+        <h2>{{offre['poste']}}</h2>
+        <h3>{{offre['titre']}}</h3>
+        <h2>{{offre['ville']}}</h2>
       </ion-label>
 
-      <ion-button fill="clear" >
+      <ion-button fill="clear" (click)="onButtonClicked(offre['id'])">
         <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </ion-item>

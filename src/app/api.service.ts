@@ -13,7 +13,11 @@ export class ApiService {
   constructor(public httpClient: HttpClient) { }
 
   getAllOffres() {
-    return this.httpClient.get("https://webservice-rest-velo-back.herokuapp.com/product");
+    return this.httpClient.get("https://damp-scrubland-46949.herokuapp.com/emplois");
+  }
+
+  getOffreById(id) {
+    return this.httpClient.get("https://damp-scrubland-46949.herokuapp.com/emplois/" + id);
   }
 
 }
