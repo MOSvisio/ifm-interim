@@ -2,41 +2,36 @@
     <ion-searchbar placeholder="Filter Pizza" inputmode="decimal" type="decimal" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 4</ion-title>
-    </ion-toolbar>
-  </ion-header>
-    
-  <ion-list lines="full">
-    <ion-item>
-      <ion-avatar slot="start">
-        <img [src]="image" />
-      </ion-avatar>
-
-      <ion-label>
-        <h2>Pokémon Yellow</h2>
-        <h3>Pokemon de type electrique</h3>
-        <h2>57220 COUME</h2>
-      </ion-label>
-
-      <ion-button fill="clear" >
-        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+<ion-content>
+  <ion-row style="width: 80%; margin: auto">
+    <ion-col text-center >
+      <form action="" style="width: 80%; margin: auto">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Nom</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Prénom</p>
+        <input style="width: 100%;" type="text" name="prenom" id="prenom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Ville</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Email</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Téléphone</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Téléphone</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Type de Contrat</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Emploi recherché</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Localisation</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Rayon</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <p style="margin-bottom: 0; padding-bottom: 0;">Disponibilité</p>
+        <input style="width: 100%;" type="text" name="nom" id="nom">
+      </form>
+      <ion-button (click)="onClick()" expand="Danger" fill="clear" shape="round" style="width: 100%;">
+        Enregister
       </ion-button>
-
-    </ion-item>
-    <ion-item>
-      <ion-label>Mega Man X</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>The Legend of Zelda</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Pac-Man</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>Super Mario World</ion-label>
-    </ion-item>
-  </ion-list>
+    </ion-col>
+  </ion-row>
 </ion-content>
