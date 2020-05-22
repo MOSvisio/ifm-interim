@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 
@@ -11,11 +11,9 @@ export class Tab3Page {
   offres: any;
 
   constructor(public api : ApiService, public router : Router) {
-    api.getFavorite(1).subscribe(data => {
-      this.offres = data['emplois'];
-    });
-    
+    this.offres = api.favs;    
   }
+
 
   onSearchChange(event){
     let items = Array.from(document.querySelector('ion-list').children) as HTMLElement[];
@@ -32,5 +30,6 @@ export class Tab3Page {
     console.log(id);
     this.router.navigate(['/tabs/emploi/' + id]);
   }
+
 
 }

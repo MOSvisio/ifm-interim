@@ -30,13 +30,39 @@ export class EmploiPage implements OnInit {
       this.activite = data["activite"]
       this.description_poste = data["description_poste"]
     })
+
+    api.getFavorite(0).subscribe(data => {
+      for (var offre of data["emplois"])
+      {
+        console.log("ofre :  " + offre['id'] + " this offre : " + this.id)
+        if (Number(offre['id']) === Number(this.id))
+        {
+          this.heart_icon  = "heart";
+        }
+      }
+    })
   }
 
   ngOnInit() {
   }
 
   onHeartClicked() {
+    if (this.heart_icon === "heart-outline")
+    {
+      console.log("call api put")
+      this.api.addFavoriteEmploiId(this.id);
+    }
+    else {
+      console.log("call remove fav")
+      this.api.removeFavoriteEmploiId(this.id);
+    }
     this.heart_icon = (this.heart_icon === "heart") ? "heart-outline" : "heart";
+  }
+
+  onPostClicked() {
+
+    this.api.addCandidatureId(this.id);
+  
   }
 
 }

@@ -1,17 +1,35 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+  <ion-searchbar placeholder="Rechercher une offre" inputmode="decimal" type="decimal" (ionChange)="onSearchChange($event)" [debounce]="250" showCancelButton="never"></ion-searchbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-item>
+    <ion-label color="dark" >Mes Candidatures</ion-label>
+  </ion-item>
+  
+
+  <ion-list>
+    <ion-item *ngFor="let offre of this.api.candidature">
+      <ion-avatar slot="start">
+        <img src="https://geeko.lesoir.be/wp-content/uploads/sites/58/2020/05/avatar.jpg" />
+      </ion-avatar>
+
+      <ion-label>
+        <h2>{{offre['poste']}}</h2>
+        <h3>{{offre['titre']}}</h3>
+        <h2>{{offre['ville']}}</h2>
+      </ion-label>
+
+      <ion-button fill="clear" (click)="onButtonClicked(offre['id'])">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
