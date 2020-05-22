@@ -12,12 +12,11 @@ export class ApiService {
 
   offres: any;
   personne: any;
-  id: number = 1;
+  id: number;
   favs: any;
   candidature : any;
 
   constructor(public httpClient: HttpClient, public nav : NavController, public app : ApplicationRef, public router : Router) {
-    this.onConnectionComplete()
     this.getAllOffres().subscribe(data => {
       this.offres = data;
     })
@@ -46,7 +45,9 @@ export class ApiService {
 
   getFavorite(id) {
     let idFavoris;
-    return this.httpClient.get("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'])
+    if (this.personne['favoris'] !== null)
+      return this.httpClient.get("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'])
+    return null;
   }
 
   getCandidature(id) {
@@ -61,26 +62,44 @@ export class ApiService {
     let dataArray  = {
       "emplois" : []
     }
-    this.getFavorite(0).subscribe(data => {
 
-      let emplois = data["emplois"]
-      for (var offre of emplois) {
-        let newData = {"id": offre['id']}
-        dataArray["emplois"].push(newData)
-      }
-      dataArray["emplois"].push( {"id": Number(id)} )
-      console.log(dataArray)
-      this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'], dataArray).subscribe(data => {
-        console.log(data['_body']);
-        this.getFavorite(1).subscribe(data => {
-          this.favs = data['emplois'];
-          console.log("get new array");
+    let favoris = this.getFavorite(0)
+    if (favoris !== null) {
+      console.log("wtf")
+      favoris.subscribe(data => {
+
+        let emplois = data["emplois"]
+        for (var offre of emplois) {
+          let newData = {"id": offre['id']}
+          dataArray["emplois"].push(newData)
+        }
+        dataArray["emplois"].push( {"id": Number(id)} )
+        console.log(dataArray)
+        this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'], dataArray).subscribe(data => {
+          console.log(data['_body']);
+          this.getFavorite(1).subscribe(data => {
+            this.favs = data['emplois'];
+            console.log("get new array");
+          });
+        }, error => {
+          console.log(error);
         });
-       }, error => {
-        console.log(error);
-      });
-      
-    })
+        
+      })
+    }
+    else {
+        dataArray["emplois"].push( {"id": Number(id)} )
+        console.log(dataArray)
+        this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'], dataArray).subscribe(data => {
+          console.log(data['_body']);
+          this.getFavorite(1).subscribe(data => {
+            this.favs = data['emplois'];
+            console.log("get new array");
+          });
+        }, error => {
+          console.log(error);
+        });
+    }
   }
 
   removeFavoriteEmploiId(id) {
@@ -164,6 +183,21 @@ export class ApiService {
         console.log(error);
       });
       
+    })
+  }
+
+  connexion(user, mdp) {
+    let data = {
+      "identifier" : user,
+      "password" : mdp
+    }
+    this.httpClient.post("https://damp-scrubland-46949.herokuapp.com/auth/local", data).subscribe(data => {
+      this.id = data['user']['id'];
+      if (this.id !== null)
+      {
+        this.onConnectionComplete();
+        this.nav.navigateForward('/tabs/tab1')
+      }
     })
   }
 

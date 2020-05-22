@@ -16,7 +16,7 @@ export class Tab2Page {
   }
 
 
-  onSearchChange(event){
+  onSearchChange2(event){
     let items = Array.from(document.querySelector('ion-list').children) as HTMLElement[];
     requestAnimationFrame(() => {
       items.forEach(item => {

@@ -31,16 +31,23 @@ export class EmploiPage implements OnInit {
       this.description_poste = data["description_poste"]
     })
 
-    api.getFavorite(0).subscribe(data => {
-      for (var offre of data["emplois"])
-      {
-        console.log("ofre :  " + offre['id'] + " this offre : " + this.id)
-        if (Number(offre['id']) === Number(this.id))
+    let favoris = api.getFavorite(0)
+    if (favoris != null)
+    {
+      favoris.subscribe(data => {
+        for (var offre of data["emplois"])
         {
-          this.heart_icon  = "heart";
+          console.log("ofre :  " + offre['id'] + " this offre : " + this.id)
+          if (Number(offre['id']) === Number(this.id))
+          {
+            this.heart_icon  = "heart";
+          }
         }
-      }
-    })
+      });
+    }
+    else {
+      this.heart_icon  = "heart-outline";
+    }
   }
 
   ngOnInit() {

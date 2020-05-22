@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form action="" style="width: 80%; margin: auto">
+    <p style="margin-bottom: 0; padding-bottom: 0;">Nom utilisateur</p>
+    <ion-input style="background-color: lightblue;" (ionChange)="onUserChanged($event)" placeholder="Enter UserName"></ion-input>
+    <p style="margin-bottom: 0; padding-bottom: 0;">Mot de passe</p>
+    <ion-input style="width: 100%; color: black" (ionChange)="onPasswordChanged($event)" type="Password" placeholder="Enter Password"></ion-input>  
+  
+    <ion-button (click)="onClick()" expand="block" shape="round">
+      Connexion
+    </ion-button>
+  </form>
+
+</ion-content>
