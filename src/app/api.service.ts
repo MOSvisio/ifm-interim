@@ -187,4 +187,22 @@ export class ApiService {
     })
   }
 
+  updateProfile(nom, prenom, ville, email, telephone, type_contrat, emploi_rechercher, localisation, rayon, dipsonibilite) {
+    let data = {
+      "nom": nom,
+      "prenom": prenom,
+      "ville": ville,
+      "email": email,
+      "telphone": telephone,
+      "type_contrat": type_contrat,
+      "emploi_rechercher": emploi_rechercher,
+      "localisation": localisation,
+      "rayon": rayon,
+      "disponibilite": dipsonibilite
+    }
+
+    this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/personnes/" + this.personne['id'], data).subscribe(data => {
+      console.log(data);
+    })
+  }
 }

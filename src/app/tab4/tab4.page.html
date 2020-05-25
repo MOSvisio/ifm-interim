@@ -1,43 +1,64 @@
 <ion-header [translucent]="true">
-    <ion-searchbar placeholder="Filter Pizza" inputmode="decimal" type="decimal" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
+  <ion-toolbar>
+    <ion-title>Profil</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-row style="width: 80%; margin: auto">
     <ion-col text-center >
       <form action="" style="width: 80%; margin: auto">
-        <p style="margin-bottom: 0; padding-bottom: 0;">Nom</p>
-        <input style="width: 100%; color: black" type="text" name="nom" id="nom" value="{{api.personne['nom']}}">
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Prénom</p>
-        <input style="width: 100%;" type="text" name="prenom" id="prenom">
+        <ion-item>
+          <ion-label>Nom :</ion-label>
+          <ion-input type="text" [(ngModel)]="formulaire.nom" name="nom"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Ville</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Prénom :</ion-label>
+          <ion-input type="text" [(ngModel)]="formulaire.prenom" name="prenom"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Email</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Ville :</ion-label>
+          <ion-input type="text" [(ngModel)]="formulaire.ville" name="ville"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Téléphone</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Email :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.email" name="email"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Téléphone</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Téléphone :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.telephone" name="telephone"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Type de Contrat</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Type de contrat :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.type_contrat" name="type_contrat"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Emploi recherché</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Emploi rechercher :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.emploi_rechercher" name="emploi_rechercher"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Localisation</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Localisation :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.localisation" name="localisation"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Rayon</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Rayon (km) :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.rayon" name="rayon"></ion-input>
+        </ion-item>
 
-        <p style="margin-bottom: 0; padding-bottom: 0;">Disponibilité</p>
-        <input style="width: 100%;" type="text" name="nom" id="nom">
+        <ion-item>
+          <ion-label>Disponibilité :</ion-label>
+          <ion-input type="email" [(ngModel)]="formulaire.disponibilite" name="disponibilite"></ion-input>
+        </ion-item>
+
       </form>
       <ion-button (click)="onClick()" expand="Danger" fill="clear" shape="round" style="width: 100%;">
         Enregister
