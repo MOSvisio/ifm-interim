@@ -64,42 +64,28 @@ export class ApiService {
     }
 
     let favoris = this.getFavorite(0)
-    if (favoris !== null) {
-      console.log("wtf")
-      favoris.subscribe(data => {
+    console.log("wtf")
+    favoris.subscribe(data => {
 
-        let emplois = data["emplois"]
-        for (var offre of emplois) {
-          let newData = {"id": offre['id']}
-          dataArray["emplois"].push(newData)
-        }
-        dataArray["emplois"].push( {"id": Number(id)} )
-        console.log(dataArray)
-        this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'], dataArray).subscribe(data => {
-          console.log(data['_body']);
-          this.getFavorite(1).subscribe(data => {
-            this.favs = data['emplois'];
-            console.log("get new array");
-          });
-        }, error => {
-          console.log(error);
+      let emplois = data["emplois"]
+      for (var offre of emplois) {
+        let newData = {"id": offre['id']}
+        dataArray["emplois"].push(newData)
+      }
+      dataArray["emplois"].push( {"id": Number(id)} )
+      console.log(dataArray)
+      this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'], dataArray).subscribe(data => {
+        console.log(data['_body']);
+        this.getFavorite(1).subscribe(data => {
+          this.favs = data['emplois'];
+          console.log("get new array");
         });
-        
-      })
-    }
-    else {
-        dataArray["emplois"].push( {"id": Number(id)} )
-        console.log(dataArray)
-        this.httpClient.put("https://damp-scrubland-46949.herokuapp.com/favorises/" + this.personne['favoris']['id'], dataArray).subscribe(data => {
-          console.log(data['_body']);
-          this.getFavorite(1).subscribe(data => {
-            this.favs = data['emplois'];
-            console.log("get new array");
-          });
-        }, error => {
-          console.log(error);
-        });
-    }
+      }, error => {
+        console.log(error);
+      });
+      
+    })
+    
   }
 
   removeFavoriteEmploiId(id) {
